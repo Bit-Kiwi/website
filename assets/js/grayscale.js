@@ -2,10 +2,11 @@
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+  $('.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    const { host, pathname, hash } = new URL(this.getAttribute('href'), document.baseURI)
+    if (location.pathname.replace(/^\//, '') == pathname.replace(/^\//, '') && location.hostname == host) {
+      var target = $(hash);
+      target = target.length ? target : $('[name=' + hash.slice(1) + ']');
       if (target.length) {
         $('html, body').animate({
           scrollTop: (target.offset().top - 48)
